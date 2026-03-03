@@ -1,0 +1,17 @@
+# Python / PyCharm
+.venv/
+pyvenv.cfg
+__pycache__/
+*.pyc
+.idea/
+.DS_Store
+
+data/
+
+# reports
+report/*.pdf
+
+# data (二选一)
+# data/
+
+
