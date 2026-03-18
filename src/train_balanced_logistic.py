@@ -14,26 +14,17 @@ warnings.filterwarnings("ignore")
 
 
 def main():
-    # =========================
-    # 1. Read data
-    # =========================
     root = Path(__file__).resolve().parents[1]
 
     train = pd.read_csv(root / "data" / "train.csv")
     test = pd.read_csv(root / "data" / "test.csv")
 
-    # =========================
-    # 2. Split predictors / response
-    # =========================
     X = train.drop(columns=["id", "cancer"])
     y = train["cancer"]
 
     X_test = test.drop(columns=["id"])
     test_ids = test["id"]
 
-    # =========================
-    # 3. Sanity checks
-    # =========================
     print("train shape:", train.shape)
     print("test shape:", test.shape)
     print("missing in train:", train.isna().sum().sum())
@@ -42,9 +33,6 @@ def main():
     print("duplicate test ids:", test["id"].duplicated().sum())
     print("class counts:\n", y.value_counts().sort_index())
 
-    # =========================
-    # 4. Train / validation split
-    # =========================
     X_train, X_valid, y_train, y_valid = train_test_split(
         X,
         y,
@@ -53,42 +41,28 @@ def main():
         stratify=y
     )
 
-    # =========================
-    # 5. Build pipeline
-    # =========================
     model = Pipeline([
         ("variance_filter", VarianceThreshold(threshold=0.0)),
-        ("select_k", SelectKBest(score_func=f_classif, k=200)),
+        ("select_k", SelectKBest(score_func=f_classif, k=100)),
         ("scaler", StandardScaler()),
         ("logit", LogisticRegression(
             solver="lbfgs",
-            C=0.01,
+            C=0.001,
+            class_weight="balanced",
             max_iter=5000,
             random_state=314
         ))
     ])
 
-    # =========================
-    # 6. Fit baseline model
-    # =========================
     model.fit(X_train, y_train)
 
-    # =========================
-    # 7. Validate
-    # =========================
     y_valid_pred = model.predict(X_valid)
 
     print("Validation accuracy:", accuracy_score(y_valid, y_valid_pred))
     print(classification_report(y_valid, y_valid_pred))
 
-    # =========================
-    # 8. Refit on full training data
-    # =========================
     model.fit(X, y)
 
-    # =========================
-    # 9. Predict test data
-    # =========================
     test_pred = model.predict(X_test)
 
     submission = pd.DataFrame({
@@ -96,8 +70,8 @@ def main():
         "cancer": test_pred
     })
 
-    submission.to_csv(root / "multinomial_logistic_submission.csv", index=False)
-    print("Saved submission to multinomial_logistic_submission.csv")
+    submission.to_csv(root / "balanced_logistic_submission.csv", index=False)
+    print("Saved submission to balanced_logistic_submission.csv")
 
 
 if __name__ == "__main__":

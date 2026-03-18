@@ -26,14 +26,15 @@ def main():
         ("scaler", StandardScaler()),
         ("logit", LogisticRegression(
             solver="lbfgs",
+            class_weight="balanced",
             max_iter=5000,
             random_state=314
         ))
     ])
 
     param_grid = {
-        "select_k__k": [50, 100, 200, 500, 1000],
-        "logit__C": [0.01, 0.1, 1, 10, 100]
+        "select_k__k": [100, 200, 500],
+        "logit__C": [0.001, 0.01, 0.1, 1]
     }
 
     cv = StratifiedKFold(
@@ -67,8 +68,8 @@ def main():
 
     print(results.head(10))
 
-    results.to_csv(root / "cv_results_multinomial_logistic.csv", index=False)
-    print("Saved CV results to cv_results_multinomial_logistic.csv")
+    results.to_csv(root / "cv_results_balanced_logistic.csv", index=False)
+    print("Saved CV results to cv_results_balanced_logistic.csv")
 
 
 if __name__ == "__main__":
