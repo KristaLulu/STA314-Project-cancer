@@ -32,8 +32,8 @@ def main():
     ])
 
     param_grid = {
-        "select_k__k": [50, 100, 200, 500, 1000],
-        "logit__C": [0.01, 0.1, 1, 10, 100]
+        "select_k__k": [150, 200, 250, 300, 400, 500],
+        "logit__C": [0.003, 0.005, 0.01, 0.02, 0.05]
     }
 
     cv = StratifiedKFold(
@@ -65,10 +65,10 @@ def main():
         "rank_test_score"
     ]].sort_values("rank_test_score")
 
-    print(results.head(10))
+    print(results.head(15))
 
-    results.to_csv(root / "cv_results_multinomial_logistic.csv", index=False)
-    print("Saved CV results to cv_results_multinomial_logistic.csv")
+    results.to_csv(root / "cv_results_refined_logistic.csv", index=False)
+    print("Saved CV results to cv_results_refined_logistic.csv")
 
 
 if __name__ == "__main__":
