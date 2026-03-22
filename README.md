@@ -135,6 +135,10 @@ sta314-Project-cancer/
 ├── report/
 ├── src/
 │   ├── preprocessing.py
+│   ├── eda/
+│   │   ├── __init__.py
+│   │   ├── run_eda.py
+│   │   └── utils.py
 │   ├── lda_qda/
 │   │   ├── compare_baseline.py
 │   │   ├── evaluate_optimized_lda.py
@@ -162,6 +166,16 @@ sta314-Project-cancer/
 │       └── utils.py
 └── README.md
 ```
+
+### EDA Scripts
+
+The `src/eda/` folder contains the exploratory data analysis code.
+
+- `run_eda.py`  
+  Runs the main exploratory data analysis workflow, including data description, sanity checks, target distribution, zero-variance filtering, standardization, and PCA visualization.
+
+- `utils.py`  
+  Contains helper functions for feature filtering, scaling, and plotting.
 
 ### MLR Scripts
 
