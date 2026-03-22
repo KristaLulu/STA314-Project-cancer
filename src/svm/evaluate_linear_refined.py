@@ -21,7 +21,7 @@ from preprocessing import (
     run_sanity_checks,
     get_project_root,
 )
-from svm.utils import build_linear_svm, RANDOM_STATE
+from svm.svm_utils import build_linear_svm, RANDOM_STATE
 
 warnings.filterwarnings("ignore")
 

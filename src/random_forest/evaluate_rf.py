@@ -20,7 +20,7 @@ from preprocessing import (
     run_sanity_checks,
     get_project_root,
 )
-from random_forest.utils import build_rf_pipeline, RANDOM_STATE
+from random_forest.rf_utils import build_rf_pipeline, RANDOM_STATE
 
 warnings.filterwarnings("ignore")
 

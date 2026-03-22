@@ -11,7 +11,7 @@ from preprocessing import (
     split_features_target,
     run_sanity_checks,
 )
-from lda_qda.utils import build_lda_selected, RANDOM_STATE
+from lda_qda.lda_qua_utils import build_lda_selected, RANDOM_STATE
 
 warnings.filterwarnings("ignore")
 

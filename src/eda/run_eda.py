@@ -6,7 +6,7 @@ from preprocessing import (
     run_sanity_checks,
 )
 
-from eda.utils import (
+from eda.eda_utils import (
     apply_zero_variance_filter,
     standardize_features,
     plot_target_distribution,

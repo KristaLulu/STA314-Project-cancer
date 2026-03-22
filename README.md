@@ -105,11 +105,11 @@ Make sure the project root contains the following files in the `data/` folder:
 Example commands:
 
 ```bash
-python src/logistic/train_baseline.py
+python src/logistic/train_baseline_logistic.py
 python src/logistic/train_balanced_logistic.py
-python src/logistic/evaluate_cv.py
-python src/logistic/evaluate_cv_balanced.py
-python src/logistic/evaluate_cv_refined.py
+python src/logistic/evaluate_cv_logistic.py
+python src/logistic/evaluate_cv_balanced_logistic.py
+python src/logistic/evaluate_cv_refined_logistic.py
 ```
 
 ## Reproducibility Notes

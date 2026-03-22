@@ -21,7 +21,7 @@ from preprocessing import (
     run_sanity_checks,
     get_project_root,
 )
-from svm.utils import (
+from svm.svm_utils import (
     build_linear_svm,
     build_rbf_svm,
     build_poly_svm,

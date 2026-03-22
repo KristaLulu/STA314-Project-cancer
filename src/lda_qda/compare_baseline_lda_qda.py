@@ -14,7 +14,7 @@ from preprocessing import (
     run_sanity_checks,
     get_project_root,
 )
-from lda_qda.utils import (
+from lda_qda.lda_qua_utils import (
     build_lda_baseline,
     build_qda_baseline,
     get_lda_summary_row,
