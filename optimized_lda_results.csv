@@ -1,0 +1,2 @@
+model,cv_accuracy,cv_macro_f1,holdout_accuracy,holdout_macro_f1
+"Optimized LDA (k=100, lsqr + auto shrinkage)",0.9039856158225952,0.8699241468758434,0.8764044943820225,0.8399879190576865
