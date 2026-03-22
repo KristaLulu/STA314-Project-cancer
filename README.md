@@ -179,3 +179,13 @@ The `src/svm/` folder contains the SVM experiments.
 
 - `generate_final_submission.py`  
   Refits the chosen final SVM model on all labeled data and generates a Kaggle submission file.
+
+### Random Forest Scripts
+
+The `src/random_forest/` folder contains the random forest experiments.
+
+- `evaluate_rf.py`  
+  Runs the baseline random forest grid search, evaluates the best model, and generates a Kaggle submission file.
+
+- `evaluate_rf_refined.py`  
+  Runs a refined random forest grid search, evaluates the refined model, and generates a Kaggle submission file.
