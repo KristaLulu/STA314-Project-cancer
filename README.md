@@ -130,6 +130,39 @@ This repository is primarily for course project organization and reproducibility
 
 ## Repository Structure
 
+```text
+sta314-Project-cancer/
+├── report/
+├── src/
+│   ├── preprocessing.py
+│   ├── lda_qda/
+│   │   ├── compare_baseline.py
+│   │   ├── evaluate_optimized_lda.py
+│   │   ├── plot_diagnostics.py
+│   │   ├── tune_lda_k.py
+│   │   └── utils.py
+│   ├── logistic/
+│   │   ├── evaluate_cv.py
+│   │   ├── evaluate_cv_balanced.py
+│   │   ├── evaluate_cv_refined.py
+│   │   ├── train_balanced_logistic.py
+│   │   ├── train_baseline.py
+│   │   └── train_refined_logistic.py
+│   ├── random_forest/
+│   │   ├── __init__.py
+│   │   ├── evaluate_rf.py
+│   │   ├── evaluate_rf_refined.py
+│   │   └── utils.py
+│   └── svm/
+│       ├── __init__.py
+│       ├── compare_svm_models.py
+│       ├── evaluate_linear_refined.py
+│       ├── extra_svm_experiments.py
+│       ├── generate_final_submission.py
+│       └── utils.py
+└── README.md
+```
+
 ### MLR Scripts
 
 - `src/logistic/evaluate_cv.py`  
