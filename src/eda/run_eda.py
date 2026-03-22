@@ -56,6 +56,8 @@ def main():
     pca, X_pca = run_pca_2d(X_scaled, y_train)
     print("Explained variance:", pca.explained_variance_ratio_)
 
+    print("Class counts:\n", y_train.value_counts().sort_index())
+
 
 if __name__ == "__main__":
     main()
