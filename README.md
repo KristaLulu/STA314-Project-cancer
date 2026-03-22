@@ -127,3 +127,55 @@ This repository supports the code appendix of our final report. It is intended t
 ## Notes
 
 This repository is primarily for course project organization and reproducibility. Some scripts correspond to intermediate experiments, while others correspond to the final models discussed in the report.
+
+## Repository Structure
+
+### MLR Scripts
+
+- `src/logistic/evaluate_cv.py`  
+  Performs the initial 5-fold cross-validation grid search over the number of selected features (`k`) and the regularization strength (`C`).
+
+- `src/logistic/evaluate_cv_balanced.py`  
+  Tests a class-weighted multinomial logistic regression model using `class_weight="balanced"` and compares its cross-validation performance to the unweighted version.
+
+- `src/logistic/evaluate_cv_refined.py`  
+  Runs a finer grid search around the original best region of `k` and `C` to check whether nearby parameter values improve cross-validation performance.
+
+- `src/logistic/train_balanced_logistic.py`  
+  Trains the best class-weighted multinomial logistic regression model, evaluates it on the holdout set, and generates a Kaggle submission file.
+
+- `src/logistic/train_baseline.py`  
+  Trains the tuned baseline multinomial logistic regression model, evaluates it on a common holdout set, and generates a Kaggle submission file.
+
+- `src/logistic/train_refined_logistic.py`  
+  Trains the refined multinomial logistic regression model, evaluates it on a common holdout set, and generates a Kaggle submission file.
+
+
+### LDA/QDA Script
+- `src/lda_qda/compare_baseline.py`  
+  Compares baseline LDA and QDA using holdout evaluation and 5-fold cross-validation.
+
+- `src/lda_qda/tune_lda_k.py`  
+  Tunes the number of selected features for the optimized LDA model.
+
+- `src/lda_qda/evaluate_optimized_lda.py`  
+  Evaluates the final optimized LDA model and generates a Kaggle submission file.
+
+- `src/lda_qda/plot_diagnostics.py`  
+  Produces diagnostic plots including a confusion matrix and PCA visualization.
+
+### SVM Scripts
+
+The `src/svm/` folder contains the SVM experiments.
+
+- `compare_svm_models.py`  
+  Compares linear, refined linear, RBF, refined RBF, and polynomial SVM using 5-fold cross-validation and a common holdout set.
+
+- `evaluate_linear_refined.py`  
+  Evaluates the refined linear SVM in detail.
+
+- `extra_svm_experiments.py`  
+  Contains additional experiments, including plain linear SVM and PCA + linear SVM.
+
+- `generate_final_submission.py`  
+  Refits the chosen final SVM model on all labeled data and generates a Kaggle submission file.

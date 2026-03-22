@@ -1,0 +1,6 @@
+Model,CV F1 Macro,CV Accuracy,Holdout Accuracy,Holdout Macro F1
+Linear SVM,0.857,0.8955,0.9157,0.8981
+Refined Linear SVM,0.857,0.8955,0.9157,0.8981
+RBF SVM,0.857,0.8955,0.9157,0.8981
+Refined RBF SVM,0.857,0.8955,0.9157,0.8981
+Polynomial SVM,0.857,0.8955,0.9157,0.8981
