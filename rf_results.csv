@@ -1,0 +1,2 @@
+model,best_params,cv_accuracy,cv_macro_f1,holdout_accuracy,holdout_macro_f1
+Random Forest Baseline,"{'rf__class_weight': None, 'rf__max_depth': None, 'rf__max_features': 'sqrt', 'rf__min_samples_leaf': 2, 'rf__n_estimators': 200, 'select__k': 500}",0.8954849665368094,0.8570023223726861,0.9157303370786517,0.8981342244500139
