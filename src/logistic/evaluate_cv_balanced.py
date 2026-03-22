@@ -53,7 +53,7 @@ def main():
     grid = GridSearchCV(
         estimator=pipe,
         param_grid=param_grid,
-        scoring="accuracy",
+        scoring="f1_macro",
         cv=cv,
         n_jobs=-1,
         verbose=1
@@ -62,7 +62,7 @@ def main():
     grid.fit(X, y)
 
     print("Best parameters:", grid.best_params_)
-    print("Best CV accuracy:", grid.best_score_)
+    print("Best CV macro-F1: ", grid.best_score_)
 
     # 7. Save CV results
     results = pd.DataFrame(grid.cv_results_)
