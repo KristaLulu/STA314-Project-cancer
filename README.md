@@ -19,6 +19,15 @@ The dataset contains 886 labeled training samples and 12,043 identifiers/feature
 - Kaggle competition page: https://www.kaggle.com/competitions/classification-of-cancer-types
 - Final report: [Add report file or link if applicable]
 
+## Team Information
+
+- Team name: [Human Learning]
+- Team members:
+  - Xiaotong Zhu
+  - Ada Fu
+  - Veronica Yu
+  - Liying He
+  
 ## Repository purpose
 
 This repository is organized to make our analysis easier to read and reproduce. It includes:
@@ -114,14 +123,6 @@ python src/logistic/evaluate_cv_refined.py
 
 This repository supports the code appendix of our final report. It is intended to document the analysis workflow and reproduce the main results reported in the paper, including preprocessing, model tuning, holdout evaluation, and final Kaggle submissions.
 
-## Team Information
-
-- Team name: [Human Learning]
-- Team members:
-  - Xiaotong Zhu
-  - Ada Fu
-  - Veronica Yu
-  - Liying He
 
 ## Notes
 
