@@ -10,29 +10,20 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 
+from preprocessing import load_raw_data, split_features_target, run_sanity_checks, get_project_root
+
 warnings.filterwarnings("ignore")
 
 
 def main():
-    root = Path(__file__).resolve().parents[1]
+    # 1. Read shared data
+    train, test = load_raw_data()
+    X, y, X_test, test_ids = split_features_target(train, test)
 
-    train = pd.read_csv(root / "data" / "train.csv")
-    test = pd.read_csv(root / "data" / "test.csv")
+    # 2. Shared sanity checks
+    run_sanity_checks(train, test)
 
-    X = train.drop(columns=["id", "cancer"])
-    y = train["cancer"]
-
-    X_test = test.drop(columns=["id"])
-    test_ids = test["id"]
-
-    print("train shape:", train.shape)
-    print("test shape:", test.shape)
-    print("missing in train:", train.isna().sum().sum())
-    print("missing in test:", test.isna().sum().sum())
-    print("duplicate train ids:", train["id"].duplicated().sum())
-    print("duplicate test ids:", test["id"].duplicated().sum())
-    print("class counts:\n", y.value_counts().sort_index())
-
+    # 3. Model-specific validation split
     X_train, X_valid, y_train, y_valid = train_test_split(
         X,
         y,
@@ -41,6 +32,7 @@ def main():
         stratify=y
     )
 
+    # 4. Model-specific pipeline
     model = Pipeline([
         ("variance_filter", VarianceThreshold(threshold=0.0)),
         ("select_k", SelectKBest(score_func=f_classif, k=100)),
@@ -54,15 +46,19 @@ def main():
         ))
     ])
 
+    # 5. Fit model
     model.fit(X_train, y_train)
 
+    # 6. Validate
     y_valid_pred = model.predict(X_valid)
 
     print("Validation accuracy:", accuracy_score(y_valid, y_valid_pred))
     print(classification_report(y_valid, y_valid_pred))
 
+    # 7. Refit on full training data
     model.fit(X, y)
 
+    # 8. Predict test data
     test_pred = model.predict(X_test)
 
     submission = pd.DataFrame({
@@ -70,6 +66,7 @@ def main():
         "cancer": test_pred
     })
 
+    root = get_project_root()
     submission.to_csv(root / "balanced_logistic_submission.csv", index=False)
     print("Saved submission to balanced_logistic_submission.csv")
 
