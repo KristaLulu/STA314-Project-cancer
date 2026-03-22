@@ -10,6 +10,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 
+from preprocessing import load_raw_data, split_features_target, run_sanity_checks, get_project_root
+
+
 warnings.filterwarnings("ignore")
 
 
@@ -17,30 +20,17 @@ def main():
     # =========================
     # 1. Read data
     # =========================
-    root = Path(__file__).resolve().parents[1]
-
-    train = pd.read_csv(root / "data" / "train.csv")
-    test = pd.read_csv(root / "data" / "test.csv")
+    train, test = load_raw_data()
 
     # =========================
     # 2. Split predictors / response
     # =========================
-    X = train.drop(columns=["id", "cancer"])
-    y = train["cancer"]
-
-    X_test = test.drop(columns=["id"])
-    test_ids = test["id"]
+    X, y, X_test, test_ids = split_features_target(train, test)
 
     # =========================
     # 3. Sanity checks
     # =========================
-    print("train shape:", train.shape)
-    print("test shape:", test.shape)
-    print("missing in train:", train.isna().sum().sum())
-    print("missing in test:", test.isna().sum().sum())
-    print("duplicate train ids:", train["id"].duplicated().sum())
-    print("duplicate test ids:", test["id"].duplicated().sum())
-    print("class counts:\n", y.value_counts().sort_index())
+    run_sanity_checks(train, test)
 
     # =========================
     # 4. Train / validation split
@@ -95,6 +85,8 @@ def main():
         "id": test_ids,
         "cancer": test_pred
     })
+
+    root = get_project_root()
 
     submission.to_csv(root / "multinomial_logistic_submission.csv", index=False)
     print("Saved submission to multinomial_logistic_submission.csv")
